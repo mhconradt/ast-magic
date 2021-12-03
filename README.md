@@ -13,26 +13,27 @@ To automatically load, add the following to your [IPython configuration file](ht
     
 ## Usage
 
-Verifying Python follows PEMDAS:
+Investigating operator precedence:
 
-    In [1]: %ast (1 + 1) ** 2 * 5 - 4
+    In [39]: %ast print(True or False and True)
     Module(
         body=[
             Expr(
-                value=BinOp(
-                    left=BinOp(
-                        left=BinOp(
-                            left=BinOp(
-                                left=Constant(value=1),
-                                op=Add(),
-                                right=Constant(value=1)),
-                            op=Pow(),
-                            right=Constant(value=2)),
-                        op=Mult(),
-                        right=Constant(value=5)),
-                    op=Sub(),
-                    right=Constant(value=4)))],
+                value=Call(
+                    func=Name(id='print', ctx=Load()),
+                    args=[
+                        BoolOp(
+                            op=Or(),
+                            values=[
+                                Constant(value=True),
+                                BoolOp(
+                                    op=And(),
+                                    values=[
+                                        Constant(value=False),
+                                        Constant(value=True)])])],
+                    keywords=[]))],
         type_ignores=[])
+    True
         
 You can use it in a cell too:
 
