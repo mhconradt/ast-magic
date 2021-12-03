@@ -1,5 +1,3 @@
-This allows you to visualize the AST of a cell in IPython upon running it.
-
 ## Installation
 
     pip3 install ast-magic
